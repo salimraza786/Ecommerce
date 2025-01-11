@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import productCategory from "../helper/productCatagory";
 import SummaryApi from "../common";
 import VerticalCard from "../component/VerticalCard";
