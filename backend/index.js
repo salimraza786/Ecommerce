@@ -13,25 +13,20 @@ const app = express();
 //    credentials : true
 // })) 
 // updated code start
-const allowedOrigins = [
-  'https://ecommerce-1-frontend-jlbl.onrender.com', // Your frontend origin
-  'http://localhost:3001' // For local development
-];
+const corsOptions = {
+  origin: 'https://ecommerce-1-frontend-jlbl.onrender.com', // Frontend domain
+  credentials: true, // Allow credentials (cookies, authentication headers)
+};
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true // Include credentials if needed (e.g., cookies, authorization headers)
-}));
+app.use(cors(corsOptions));
 
-app.use(cors({
-  origin: '*', // Allow all origins
-}));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://ecommerce-1-frontend-jlbl.onrender.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 // updated code end
 app.use(express.json())
