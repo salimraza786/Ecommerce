@@ -40,6 +40,7 @@ const SummaryApi = {
      },
      categoryProduct:{
       url : `${backendDomain}/api/get-categoryProduct`,
+      mode: 'no-cors'
       method : "get"
      },
      categoryWiseProduct:{
