@@ -1,4 +1,4 @@
-const backendDomain = "http://localhost:5000"
+const backendDomain = "https://ecommerce-3cya.onrender.com"
 
 
 const SummaryApi = {
