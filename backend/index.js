@@ -8,10 +8,32 @@ require('dotenv').config()
 
 
 const app = express();
+// app.use(cors({
+//    origin : process.env.FRONTEND_URL,
+//    credentials : true
+// })) 
+// updated code start
+const allowedOrigins = [
+  'https://ecommerce-1-frontend-jlbl.onrender.com', // Your frontend origin
+  'http://localhost:3001' // For local development
+];
+
 app.use(cors({
-   origin : process.env.FRONTEND_URL,
-   credentials : true
-})) 
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // Include credentials if needed (e.g., cookies, authorization headers)
+}));
+
+app.use(cors({
+  origin: '*', // Allow all origins
+}));
+
+// updated code end
 app.use(express.json())
 app.use(cookieParser())
 
